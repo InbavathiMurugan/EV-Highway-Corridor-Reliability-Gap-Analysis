@@ -6,3 +6,6 @@ venv/
 .env
 *.gpkg
 *.gpkg.zip
+# Large geospatial files
+data/Cleaned datasets/highways_clean.geojson
+outputs/tables/national_segments_gap.geojson
