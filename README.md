@@ -1,155 +1,166 @@
 # EV Highway Corridor Reliability Gap Analysis
 
-### Can an EV driver actually charge along India's major highways, or only inside cities?
+## Project Title
 
-A geospatial analytics project that evaluates **fast-charger coverage along six major national highways** and compares charging infrastructure with **EV demand across all 36 Indian states and Union Territories**.
+**EV Highway Corridor Reliability Gap Analysis** 
 
-**Author:** Inbavathi  
-**Domain:** Data Analytics · Exploratory Data Analysis  
-**Geography:** India  
-**Tools:** Python · Pandas · GeoPandas · Shapely · SciPy · Scikit-learn · Matplotlib · Seaborn · Jupyter
+## Industry Name
 
----
-
-## 1. Project Overview
-
-Most EV-infrastructure analyses focus on the **number of chargers in each state**. However, state-level totals can hide important geographic gaps.
-
-A state may have hundreds of chargers concentrated around major cities while long highway stretches remain poorly served.
-
-This project therefore focuses on a **corridor-level question**:
-
-> **Which highway stretches have no nearby fast charger, and do these gaps overlap with areas experiencing higher EV adoption?**
-
-### State-level view vs. Corridor-level view
-
-| State-level analysis | Corridor-level analysis |
-|---|---|
-| "Karnataka has 376 mapped chargers." | "A highway stretch has no fast charger within 50 km." |
-| State averages can hide local gaps. | Identifies specific uncovered stretches. |
-| Limited information for route planning. | Helps identify potential infrastructure priorities. |
+**Electric Vehicle (EV) / Transportation & Mobility**
 
 ---
 
-## 2. Project Objectives
+## Problem Statement
 
-The project aims to:
+The growth of electric vehicles in India requires reliable charging infrastructure not only within cities but also along major highway corridors.
 
-- Measure fast-charger coverage along major national highways.
-- Identify long stretches without nearby fast chargers.
-- Compare charger supply with EV registrations.
-- Identify states with potential EV infrastructure gaps.
-- Evaluate whether charger **count alone** adequately represents highway coverage.
-- Test how results change under different assumptions.
-- Provide a reproducible geospatial analysis workflow.
+This project analyzes EV charging station locations, highway networks, and EV registration data to identify potential charging infrastructure gaps along six major national highways in India.
+
+The objective is to determine whether charging infrastructure is sufficiently distributed along important highway corridors, identify highway stretches where EV drivers may lack nearby fast-charging infrastructure, and examine these gaps in relation to EV adoption across all 36 states and Union Territories.
 
 ---
 
-## 3. Key Findings
+## Proposed Solution / Analysis Questions
 
-| # | Finding |
-|---|---|
-| 1 | **10,377,820** EVs were registered between 2017 and 2026 in the Vahan data used. Cars and buses account for approximately **7%** of these registrations. |
-| 2 | **1,822 operational chargers** were mapped in India, including **1,421 fast chargers** using the project's ≥25 kW definition. |
-| 3 | Approximately **98,551 km (60%)** of the mapped road network has no fast charger within 50 km. |
-| 4 | Among the six selected highways, **NH-544 (100%)** and **NH-48 (97.7%)** have the highest coverage. |
-| 5 | **NH-52 (50.0%)** has the lowest coverage among the six selected highways. |
-| 6 | The longest uncovered stretch on a selected highway is approximately **427 km on NH-44**. |
-| 7 | **NH-66** has 243 nearby fast chargers but still contains a **376 km uncovered stretch**, demonstrating why charger count alone can hide corridor-level gaps. |
-| 8 | Maharashtra has the largest uncovered key-highway length at approximately **891 km**, followed by Madhya Pradesh at **796 km**. |
-| 9 | The highest overall state EV Desert Index scores are observed for **Bihar, Chandigarh, Assam, Tripura, and Punjab**. |
-| 10 | Highway ratings remain broadly stable under the two primary fast-charger definitions, while the stricter ≥50 kW definition changes some highway classifications. |
+The project uses **Python-based data analysis and geospatial analysis** to evaluate EV charging infrastructure along major Indian highways.
 
-> **Important:** Open Charge Map is a crowdsourced source. Areas with low mapped charger counts may partly reflect incomplete or outdated mapping rather than the absence of real-world infrastructure.
+The analysis focuses on the following questions:
 
----
+- How well are major highways covered by fast-charging infrastructure?
+- Which highway stretches have no nearby fast charger?
+- What are the longest uncovered stretches?
+- Does charger count alone accurately represent highway charging coverage?
+- How does charging infrastructure compare with EV registrations across states and Union Territories?
+- Which states have a higher potential mismatch between EV demand and charging infrastructure?
+- How do the results change when different gap distances and fast-charger definitions are used?
+- How consistent are the highway ratings under different analytical assumptions?
 
-## 4. Highway Coverage Scorecard
+The project analyzes six target highways:
 
-**Fast charger definition:** Operational charger with maximum power ≥25 kW  
-**Gap definition:** Segment midpoint is more than 50 km from the nearest fast charger
-
-| Highway | Length (km) | Fast Chargers Within 5 km | Chargers / 100 km | Covered (%) | Uncovered (km) | Longest Gap (km) | Rating |
-|---|---:|---:|---:|---:|---:|---:|---|
-| NH-544 | 330.6 | 101 | 30.6 | 100.0 | 0.0 | 0.0 | Reliable |
-| NH-48 | 2,542.5 | 191 | 7.5 | 97.7 | 58.2 | 27.1 | Reliable |
-| NH-66 | 1,646.0 | 243 | 14.8 | 70.1 | 491.8 | 376.1 | Patchy |
-| NH-16 | 1,711.8 | 38 | 2.2 | 64.4 | 609.0 | 126.2 | Poor |
-| NH-44 | 3,558.1 | 186 | 5.2 | 56.0 | 1,566.8 | 426.6 | Poor |
-| NH-52 | 2,228.7 | 19 | 0.9 | 50.0 | 1,114.7 | 173.4 | Poor |
-
-### Rating Criteria
-
-- **Reliable:** >90% covered
-- **Patchy:** 70–90% covered
-- **Poor:** ≤70% covered
+- NH-44
+- NH-48
+- NH-16
+- NH-66
+- NH-544
+- NH-52
 
 ---
 
-## 5. Visualizations
+## Dataset Name
 
-The project includes maps and charts showing highway coverage, state-level infrastructure gaps, and EV-demand relationships.
+The project uses multiple datasets:
 
-### Key Visuals
+1. **EV Registration Data**
+   - All EV registrations
+   - Electric cars
+   - Electric buses
 
-- [Fast-charging coverage on six highways](outputs/figures/10_gap_map_6_highways.png)
-- [Highway scorecard](outputs/figures/09_highway_scorecard.png)
-- [EV Desert quadrant](outputs/figures/06_ev_desert_quadrant.png)
-- [State gap score map](outputs/figures/18_gap_score_map.png)
+2. **EV Charging Station Data**
 
-Additional charts and maps are available in:
+3. **National Highway Data**
 
-```text
-outputs/figures/
+4. **State and Union Territory Boundary Data**
+
+---
+
+## Dataset Source
+
+### EV Registration Data
+
+**Source:** [Vahan Dashboard](https://vahan.parivahan.gov.in/vahan4dashboard/)
+
+The data covers:
+
+- Calendar years 2017–2026
+- ELECTRIC(BOV) and PURE EV
+- ACTIVE registration status
+- All 36 states and Union Territories
+
+> **Note:** 2026 is a partial year.
+
+### Charging Station Data
+
+**Source:** [Open Charge Map API](https://openchargemap.org/site/develop/api)
+
+The India charging-station data contains **1,979 raw records** before cleaning.
+
+Open Charge Map data is licensed under **CC BY 4.0**. Appropriate attribution is required when reusing the charger data.
+
+### National Highway Data
+
+**Source:** MoRTH via PM GatiShakti, from [India Geodata](https://yashveeeeeeer.github.io/india-geodata/)
+
+The project uses the `National_Highways.parquet` dataset.
+
+
+### State and Union Territory Boundaries
+
+**Source:** India Geodata
+
+State and Union Territory boundaries are used for assigning charging stations and highway segments to geographic regions.
+
+---
+
+# Tools & Technologies
+
+- Python
+- Jupyter Notebook
+- NumPy
+- Pandas
+- GeoPandas
+- Shapely
+- SciPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+
+### Coordinate Reference System
+
+**EPSG:7755** is used as the projected CRS for distance and length calculations.
+
+---
+
+# Project Workflow
+
+```
+Industry Selection
+        ↓
+Problem Identification
+        ↓
+Dataset Collection
+        ↓
+Data Cleaning
+        ↓
+Data Transformation
+        ↓
+Data Analysis
+        ↓
+Data Visualization
+        ↓
+Insights
+        ↓
+Recommendations
 ```
 
 ---
 
-## 6. Data Sources
+# Data Cleaning
 
-| Dataset | Source | Purpose |
-|---|---|---|
-| EV registrations | [Vahan Dashboard](https://vahan.parivahan.gov.in/vahan4dashboard/) | EV demand |
-| Charging stations | [Open Charge Map API](https://openchargemap.org/site/develop/api) | Charger supply |
-| National highways | MoRTH via PM GatiShakti / [India Geodata](https://yashveeeeeeer.github.io/india-geodata/) | Highway network |
-| State & UT boundaries | India Geodata | Spatial assignment and analysis |
+The datasets were cleaned and prepared before performing the analysis.
 
-### EV Registration Data
-
-The Vahan dataset covers:
-
-- Calendar years: **2017–2026**
-- Fuel types: **ELECTRIC(BOV)** and **PURE EV**
-- Registration status: **ACTIVE**
-- Geography: **All 36 states and Union Territories**
-
-> **Note:** 2026 is a partial year and should not be interpreted as a complete annual total.
-
-### Charging Data
-
-Open Charge Map was queried for India.
+### Charging Station Data
 
 - Raw records: **1,979**
-- Cleaned records: approximately **1,841**
+- Cleaned records: **1,841**
 - Operational chargers used in the final analysis: **1,822**
 - Fast chargers under the ≥25 kW definition: **1,421**
 
-Open Charge Map data is licensed under **CC BY 4.0**. Attribution should be provided when reusing the charger data.
+### Highway Data
 
----
+- Original records: **10,317**
+- Cleaned records: **9,507**
 
-## 7. Methodology
-
-### Step 1 — Data Cleaning
-
-Each dataset was cleaned and standardized before analysis.
-
-| Dataset | Raw / Original | Cleaned |
-|---|---:|---:|
-| Charging stations | 1,979 | 1,841 |
-| Highway records | 10,317 | 9,507 |
-
-Cleaning included handling:
+The cleaning process included handling:
 
 - Duplicate records
 - Invalid geometries
@@ -161,78 +172,122 @@ Cleaning included handling:
 
 ---
 
-### Step 2 — Fast Charger Definition
+# Data Transformation
 
-A charger is classified as a **fast charger** when:
+The project applies several spatial and analytical transformations.
 
-```text
-Operational AND Maximum Power ≥ 25 kW
-```
+### Fast Charger Definition
+
+The primary definition of a fast charger is:
+
+" Operational charger with maximum power ≥ 25 kW "
+
 
 The dataset's own fast-charge flag disagreed with the power-based definition for **152 stations**.
 
-Therefore, the primary analysis uses **maximum charging power** as the fast-charger definition.
+Therefore, the primary analysis uses charger power to define fast chargers, while the dataset flag is tested as an alternative during robustness analysis.
 
-The alternative dataset flag is tested during the robustness analysis.
+### Highway Segmentation
 
----
-
-### Step 3 — Highway Segmentation
-
-The highway network is divided into approximately **25 km segments**.
+The selected highway network is divided into approximately **25 km segments**.
 
 For each segment:
 
-1. Calculate the segment midpoint.
-2. Find the nearest operational fast charger.
-3. Calculate the straight-line distance to that charger.
-4. Classify the segment as covered or uncovered.
+1. The segment midpoint is calculated.
+2. The nearest operational fast charger is identified.
+3. Straight-line distance to the nearest fast charger is calculated.
+4. The segment is classified as covered or uncovered.
 
-A segment is classified as a **gap** when:
+A segment is considered a gap when:
 
-```text
-Distance to nearest fast charger > 50 km
-```
+" Distance to nearest fast charger > 50 km "
 
----
+### Highway Corridor Buffer
 
-### Step 4 — Highway Corridor Analysis
-
-Six national highways were selected for detailed corridor analysis:
-
-```text
-NH-44
-NH-48
-NH-16
-NH-66
-NH-544
-NH-52
-```
-
-Only chargers located within a **5 km corridor buffer** of the corresponding highway are counted for the highway scorecard.
-
-This prevents unrelated chargers located elsewhere in the state from artificially improving highway coverage.
+For the six selected highways, only chargers within a **5 km corridor buffer** of the corresponding highway are counted for the highway scorecard.
 
 ---
 
-### Step 5 — Highway Scoring
+# Data Analysis & Visualization
 
-Each highway is evaluated using:
+The project performs the following analysis using Python and geospatial techniques.
 
-- Total highway length
-- Fast chargers within the corridor
+## 1. EV Registration Analysis
+
+EV registrations are analyzed across:
+
+- States and Union Territories
+- Calendar years
+- All EVs
+- Electric cars
+- Electric buses
+
+The total EV registrations in the dataset from 2017 to 2026 are:
+
+**10,377,820**
+
+Cars and buses account for approximately **7%** of the total EV registrations.
+
+---
+
+## 2. Charging Infrastructure Analysis
+
+Charging infrastructure is analyzed using:
+
+- Charger operational status
+- Maximum charging power
+- Fast-charger classification
+- State-level charger distribution
+- Charger density
+
+The final analysis contains:
+
+- **1,822 operational chargers**
+- **1,421 fast chargers** under the ≥25 kW definition
+
+---
+
+## 3. Highway Coverage Analysis
+
+Six national highways are analyzed:
+
+- NH-44
+- NH-48
+- NH-16
+- NH-66
+- NH-544
+- NH-52
+
+The analysis calculates:
+
+- Highway length
+- Fast chargers within 5 km
 - Chargers per 100 km
-- Percentage of highway covered
-- Total uncovered length
+- Covered highway percentage
+- Uncovered highway length
 - Longest uncovered stretch
-
-The primary highway rating is based on percentage of covered highway length.
+- Highway reliability rating
 
 ---
 
-### Step 6 — EV Desert Index
+## 4. Highway Gap Analysis
 
-A state-level **EV Desert Index** ranging from 0–100 is calculated using three components:
+Highway segments are evaluated using a **50 km gap threshold**.
+
+A highway segment is considered uncovered when the nearest fast charger is more than 50 km away.
+
+The analysis identifies:
+
+- Total uncovered highway length
+- Longest uncovered stretch
+- Highway-level coverage
+- State-level contribution to highway gaps
+
+---
+
+## 5. State-Level EV Infrastructure Gap Analysis
+
+A state-level **EV Desert Index** is calculated from three components:
 
 | Component | Weight |
 |---|---:|
@@ -240,81 +295,143 @@ A state-level **EV Desert Index** ranging from 0–100 is calculated using three
 | Share of highway in gap | 35% |
 | Charger sparsity per area | 25% |
 
-Each component is **min-max scaled** before applying the weights.
+Each component is min-max scaled before applying the weights.
 
-A higher score indicates a potentially larger mismatch between EV demand and charging infrastructure.
-
-> The weights are analytical assumptions rather than an official standard.
+The resulting index ranges from **0 to 100**.
 
 ---
 
-### Step 7 — Robustness Testing
+## 6. Sensitivity Analysis
 
-The analysis tests whether the findings change under different assumptions.
+The project tests the stability of the results using different assumptions.
 
-#### Gap-distance sensitivity
+### Gap Distance
 
-```text
-25 km
-50 km
-75 km
-100 km
-```
+- 25 km
+- 50 km
+- 75 km
+- 100 km
 
-#### Fast-charger definitions
+### Fast-Charger Definition
 
-```text
-≥22 kW
-≥25 kW
-≥50 kW
-Dataset fast-charge flag
-```
+- ≥22 kW
+- ≥25 kW
+- ≥50 kW
+- Dataset fast-charge flag
 
-#### Weighting sensitivity
+### Weighting Schemes
 
 Five alternative weighting schemes are tested for the EV Desert Index.
 
-This helps determine whether the conclusions depend heavily on a particular threshold or weighting choice.
+---
+
+## 7. K-Means Clustering
+
+K-Means clustering with **3 clusters** is used as a supporting analysis to group states based on the analyzed EV and charging-infrastructure characteristics.
 
 ---
 
-### Step 8 — K-Means Clustering
+# Key Insights
 
-K-Means clustering with **3 clusters** is used as a supporting analytical view.
+1. **10,377,820 EVs** were registered between 2017 and 2026 in the Vahan data used.
 
-The clustering helps group states with similar combinations of:
+2. Only approximately **7%** of the EV registrations are cars or buses, the vehicle categories considered relevant to highway fast-charging analysis.
 
-- EV demand
-- Charger availability
-- Highway gaps
-- Charger density
+3. **1,822 operational chargers** were mapped in India, including **1,421 fast chargers** under the ≥25 kW definition.
 
-Clustering is treated as a supporting analysis rather than the primary ranking method.
+4. Approximately **98,551 km (60%)** of the mapped road network has no fast charger within 50 km.
+
+5. **NH-544** has the highest coverage among the six selected highways, with **100%** coverage.
+
+6. **NH-48** has **97.7%** coverage and is also classified as **Reliable**.
+
+7. **NH-52** has the lowest coverage among the six selected highways at **50.0%**.
+
+8. The longest uncovered stretch among the selected highways is approximately **427 km on NH-44**.
+
+9. **NH-66** has **243 nearby fast chargers** but still contains a **376 km uncovered stretch**, showing that charger count alone does not describe corridor-level coverage.
+
+10. Maharashtra has the largest uncovered key-highway length at approximately **891 km**, followed by Madhya Pradesh at approximately **796 km**.
+
+11. The highest overall state EV Desert Index scores are observed for **Bihar, Chandigarh, Assam, Tripura, and Punjab**.
+
+12. Highway ratings remain broadly stable under the primary fast-charger definitions, while using a stricter **≥50 kW** definition changes some highway classifications.
 
 ---
 
-## 8. Coordinate Reference System
+# Recommendations
 
-All distance and length calculations use:
+Based on the findings of the analysis:
 
-```text
-EPSG:7755
-```
+- **Focus on uncovered highway stretches rather than relying only on state-level charger counts.**
 
-This projected coordinate reference system allows geometric measurements to be performed in metres rather than geographic degrees.
+- **Prioritize long highway gaps** where fast-charging infrastructure is not available within the defined 50 km threshold.
+
+- **Consider EV demand along with charger availability** when identifying infrastructure priorities.
+
+- **Use corridor-level analysis for infrastructure planning**, since a high number of chargers in a state does not necessarily mean that its major highways are well covered.
+
+- **Validate mapped gaps with current ground-level information**, because Open Charge Map is crowdsourced and may contain incomplete or outdated records.
+
+- **Use multiple charger definitions and gap thresholds** when evaluating infrastructure coverage rather than relying on a single assumption.
+
+- **In future analysis, incorporate road-network driving distance and traffic data** to provide a more realistic assessment of highway charging accessibility.
 
 ---
 
-## 9. Repository Structure
+# Highway Coverage Scorecard
 
-```text
+| Highway | Length (km) | Fast Chargers Within 5 km | Chargers / 100 km | Covered (%) | Uncovered (km) | Longest Gap (km) | Rating |
+|---|---:|---:|---:|---:|---:|---:|---|
+| NH-544 | 330.6 | 101 | 30.6 | 100.0 | 0.0 | 0.0 | Reliable |
+| NH-48 | 2,542.5 | 191 | 7.5 | 97.7 | 58.2 | 27.1 | Reliable |
+| NH-66 | 1,646.0 | 243 | 14.8 | 70.1 | 491.8 | 376.1 | Patchy |
+| NH-16 | 1,711.8 | 38 | 2.2 | 64.4 | 609.0 | 126.2 | Poor |
+| NH-44 | 3,558.1 | 186 | 5.2 | 56.0 | 1,566.8 | 426.6 | Poor |
+| NH-52 | 2,228.7 | 19 | 0.9 | 50.0 | 1,114.7 | 173.4 | Poor |
+
+### Highway Rating Criteria
+
+- **Reliable:** More than 90% covered
+- **Patchy:** 70%–90% covered
+- **Poor:** 70% or below
+
+---
+
+# Visualization Screenshots
+
+The following are the actual visualizations provided for the project.
+
+## Fast-Charging Coverage on 6 Highways
+
+![Fast-Charging Coverage on 6 Highways](outputs/figures/10_gap_map_6_highways.png)
+
+## Highway Scorecard
+
+![Highway Scorecard](outputs/figures/09_highway_scorecard.png)
+
+## EV Desert Quadrant
+
+![EV Desert Quadrant](outputs/figures/06_ev_desert_quadrant.png)
+
+## State Gap Score Map
+
+![State Gap Score Map](outputs/figures/18_gap_score_map.png)
+
+> Additional project visualizations are available in the `outputs/figures/` folder.
+
+---
+
+# Project Folder Structure
+
 EV_Highway_Corridor_Reliability_Gap_Analysis/
 │
 ├── README.md
 │
 ├── data/
+│   │
 │   ├── Raw datasets/
-│   │   └── Source downloads
+│   │   └── Source datasets
 │   │
 │   └── Cleaned datasets/
 │       ├── states_clean.parquet
@@ -329,8 +446,13 @@ EV_Highway_Corridor_Reliability_Gap_Analysis/
 │   └── Final analysis notebook
 │
 ├── outputs/
+│   │
 │   ├── figures/
-│   │   └── PNG charts and maps
+│   │   ├── 10_gap_map_6_highways.png
+│   │   ├── 09_highway_scorecard.png
+│   │   ├── 06_ev_desert_quadrant.png
+│   │   ├── 18_gap_score_map.png
+│   │   └── Other project figures
 │   │
 │   └── tables/
 │       ├── highway_scorecard.csv
@@ -343,215 +465,39 @@ EV_Highway_Corridor_Reliability_Gap_Analysis/
 │   └── PROJECT_REPORT.md
 │
 └── requirements.txt
-```
 
 ---
 
-## 10. Technologies Used
+# Limitations
 
-### Programming & Analysis
-
-- Python
-- Pandas
-- NumPy
-- GeoPandas
-- Shapely
-- SciPy
-- Scikit-learn
-
-### Visualization
-
-- Matplotlib
-- Seaborn
-
-### Development Environment
-
-- Jupyter Notebook
-- Git / GitHub
+- **Open Charge Map is crowdsourced**, so charger records may be incomplete or outdated.
+- Operational status represents a **snapshot** and does not measure real-time charger uptime.
+- Highway gaps are based on **straight-line distance**, not actual driving distance.
+- The highway dataset was updated on **30-06-2022**.
+- The analysis does not filter the highway data by current road status.
+- The **5 km corridor buffer**, **25 km segmentation**, **50 km gap threshold**, and **≥25 kW fast-charger definition** are project-specific analytical choices.
+- Vahan registration data is available at the state level and does not directly represent highway traffic or route-level EV demand.
+- **2026 registration data is a partial year.**
+- The EV Desert Index weights are analytical assumptions and state rankings can change under different weighting schemes.
 
 ---
 
-## 11. Reproducibility
+# Future Work
 
-### 1. Clone the repository
-
-```bash
-git clone <your-repository-url>
-cd EV_Highway_Corridor_Reliability_Gap_Analysis
-```
-
-### 2. Create a Python environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install pandas numpy geopandas shapely scipy scikit-learn matplotlib seaborn pyarrow requests jupyter
-```
-
-Or, if available:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure Open Charge Map API
-
-Create a free Open Charge Map API key.
-
-Keep the API key **outside the source code** using an environment variable or `.env` file.
-
-Make sure `.env` is included in `.gitignore`.
-
-### 5. Run the notebooks
-
-Run the notebooks in the following order:
-
-```text
-1. Dataset cleaning notebooks
-2. Final analysis notebook
-```
-
-The analysis generates outputs in:
-
-```text
-outputs/figures/
-outputs/tables/
-```
-
----
-
-## 12. Main Analysis Parameters
-
-The primary analysis thresholds are defined at the beginning of the analysis notebook.
-
-```python
-CORRIDOR_KM = 5
-SEG_KM = 25
-GAP_KM = 50
-FAST_KW = 25
-TARGET_HIGHWAYS = [
-    "NH-44",
-    "NH-48",
-    "NH-16",
-    "NH-66",
-    "NH-544",
-    "NH-52"
-]
-```
-
-These parameters can be modified to reproduce the sensitivity analysis.
-
----
-
-## 13. Limitations
-
-The results should be interpreted within the limitations of the available datasets and assumptions.
-
-### 13.1 Crowdsourced charger data
-
-Open Charge Map is crowdsourced and may contain:
-
-- Missing stations
-- Outdated records
-- Duplicate locations
-- Incorrect status or power information
-
-Therefore, a mapped gap does not necessarily mean that no real-world charger exists.
-
-### 13.2 Operational status is a snapshot
-
-A station marked as operational does not guarantee that it is currently available or functioning.
-
-This project measures **mapped infrastructure presence**, not real-time charging reliability.
-
-### 13.3 Straight-line distance
-
-The 50 km gap rule uses straight-line distance from the segment midpoint to the nearest fast charger.
-
-It does not represent actual driving distance along the road network.
-
-### 13.4 Highway dataset age
-
-The highway dataset was updated on **30-06-2022**.
-
-The analysis does not filter the network by current construction or operational status, so some proposed or under-construction road segments may be present.
-
-### 13.5 Analyst-defined thresholds
-
-The following are project assumptions:
-
-- 5 km corridor buffer
-- 25 km highway segmentation
-- 50 km gap threshold
-- ≥25 kW fast-charger definition
-
-These are not official government standards.
-
-### 13.6 EV demand is a proxy
-
-Vahan registration data represents registered vehicles at the state level.
-
-It does not directly measure:
-
-- Highway traffic
-- EV travel patterns
-- Inter-state trips
-- Charging demand at individual locations
-
-### 13.7 EV registration period
-
-The 2026 registration data is year-to-date and therefore should not be compared directly with completed calendar years without considering the partial-year effect.
-
-### 13.8 EV Desert Index weights
-
-The 40/35/25 weighting scheme is a project-specific analytical choice.
-
-State rankings can change when different weights are applied.
-
----
-
-## 14. Future Work
-
-Potential extensions include:
-
-- Repeat charger data collection over time to measure infrastructure changes.
-- Use **road-network driving distance** instead of straight-line distance.
-- Add highway traffic volume and vehicle-flow data.
+- Repeat the charger data collection over time to study infrastructure changes.
+- Use driving distance along the road network instead of straight-line distance.
+- Add traffic volume and highway vehicle-flow data.
 - Expand the analysis beyond the six selected highways.
-- Compare Open Charge Map with official state-wise charger counts.
-- Estimate the minimum number of new charging locations required to reduce all gaps below a target distance.
-- Build an interactive dashboard for highway and state-level exploration.
-- Develop route-level lookup functionality for EV drivers.
-- Incorporate charger reliability and uptime data when available.
+- Compare Open Charge Map data with official state-wise charger counts.
+- Estimate the minimum number of new charging locations required to reduce highway gaps below a target distance.
+- Build an interactive dashboard or web map for route-level exploration.
+- Incorporate charger reliability and uptime information when available.
 
 ---
 
-## 15. Acknowledgements
+# Project Report
 
-This project uses publicly available data and resources from:
-
-- **Open Charge Map contributors** — charging-station data
-- **Ministry of Road Transport and Highways** — Vahan registration data and highway information
-- **PM GatiShakti / India Geodata** — geospatial highway and state-boundary data
-- **India Geodata project** — processed geographic datasets
-
-Open Charge Map data is licensed under **CC BY 4.0**. Please provide appropriate attribution when reusing the charger dataset.
-
----
-
-## 16. Project Report
-
-Detailed methodology, analysis, results, visualizations, and sensitivity checks are documented in:
+Detailed methodology, analysis, results, visualizations, and sensitivity analysis are available in:
 
 ```text
 docs/PROJECT_REPORT.md
@@ -559,13 +505,36 @@ docs/PROJECT_REPORT.md
 
 ---
 
-## 17. Conclusion
+# Acknowledgements
 
-This project demonstrates why **charger counts alone are not enough to evaluate EV infrastructure**.
+This project uses publicly available data and resources from:
 
-A state may have a large number of charging stations while important highway stretches remain poorly served. By combining **EV registrations, charger locations, highway geometry, spatial segmentation, and gap analysis**, this project provides a more route-oriented view of charging infrastructure.
+- **Open Charge Map contributors** — Charging station data
+- **Ministry of Road Transport and Highways** — Vahan registration data
+- **MoRTH / PM GatiShakti** — National highway data
+- **India Geodata project** — Highway and state geospatial datasets
 
-The analysis therefore shifts the question from:
+Open Charge Map data is licensed under **CC BY 4.0**. Appropriate attribution should be provided when reusing the charger data.
+
+---
+
+# Author
+
+- **Name:** Inbavathi Murugan
+- **Student ID:** AF05309783
+- **Organization:** Anudip Foundation
+- **Course:** AIML
+- **Batch Code:** ANP-D7444
+
+---
+
+# Conclusion
+
+This project demonstrates why **charger count alone is not sufficient to evaluate EV highway infrastructure**.
+
+By combining EV registration data, charging-station locations, highway geometry, spatial segmentation, and gap analysis, the project provides a **corridor-level perspective** of EV charging accessibility.
+
+The analysis shifts the focus from:
 
 > **"How many chargers does a state have?"**
 
